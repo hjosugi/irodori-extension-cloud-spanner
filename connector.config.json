@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "visibility": "public",
+  "extensionId": "irodori.cloud-spanner",
+  "connector": {
+    "id": "cloudSpanner.connector",
+    "engine": "cloudSpanner",
+    "label": "Cloud Spanner",
+    "aliases": [
+      "cloudSpanner",
+      "cloud-spanner",
+      "Cloud Spanner",
+      "Cloud",
+      "Spanner"
+    ],
+    "defaultPort": 443,
+    "wire": "cloudSpanner",
+    "module": "cloudSpanner.driver",
+    "features": [
+      "metadata",
+      "sql",
+      "explain"
+    ]
+  },
+  "runtime": {
+    "abi": "irodori.connector.native.v1",
+    "module": {
+      "id": "cloudSpanner.driver",
+      "path": "dist/native",
+      "platforms": [
+        "windowsX64",
+        "windowsArm64",
+        "macosX64",
+        "macosArm64",
+        "linuxX64",
+        "linuxArm64"
+      ]
+    },
+    "crate": "irodori_extension_cloud_spanner",
+    "entrypoints": [
+      "irodori_extension_abi_version",
+      "irodori_connector_engine_json",
+      "irodori_extension_manifest_json",
+      "irodori_connector_config_json",
+      "irodori_connector_call_json",
+      "irodori_connector_free_buffer"
+    ],
+    "supportedCalls": [
+      "health",
+      "describe",
+      "manifest",
+      "config"
+    ],
+    "driverLinked": false
+  },
+  "source": {
+    "marketplaceId": "irodori.cloud-spanner",
+    "repository": "https://github.com/hjosugi/irodori-extension-cloud-spanner",
+    "knowledgeEngineStatus": "recognized_no_connector",
+    "adapter": null,
+    "adapterSha256": null
+  }
+}
