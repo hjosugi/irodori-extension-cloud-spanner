@@ -11,12 +11,12 @@ This connector is listed in the public Irodori extension marketplace.
 - Wire: `cloudSpanner`
 - Default port: `443`
 - Native ABI: `irodori.connector.native.v1`
-- Driver linked: `false`
+- Driver linked: `true`
 
 No desktop adapter source exists yet; this package starts from the refactored ABI shim and connector metadata.
 
 Connector metadata lives in `connector.config.json` and `irodori.extension.json`.
-The Rust code keeps native ABI exports in `src/lib.rs`, shared buffer/JSON helpers in `src/abi.rs`, and metadata-only behavior in `src/stub.rs` until the engine driver is linked.
+The Rust code keeps native ABI exports in `src/lib.rs`, shared buffer/JSON helpers in `src/abi.rs`, and Google Cloud Spanner REST API behavior in `src/driver.rs`.
 
 ## Connection Metadata
 
@@ -39,7 +39,7 @@ The Rust code keeps native ABI exports in `src/lib.rs`, shared buffer/JSON helpe
 
 ## ABI Calls
 
-The scaffold handles these JSON requests today:
+The driver handles these JSON requests today:
 
 | Method | Response |
 |---|---|
@@ -47,9 +47,10 @@ The scaffold handles these JSON requests today:
 | `describe` / `capabilities` | Embedded manifest and connector config. |
 | `manifest` | Raw `irodori.extension.json`. |
 | `config` | Raw `connector.config.json`. |
-
-
-Driver operations such as `connect`, `query`, and `metadata` intentionally return `connector.driverNotLinked` until the engine implementation is connected.
+| `connect` | Creates a Cloud Spanner session for the configured database. |
+| `query` | Runs SQL through the Cloud Spanner `executeSql` API. |
+| `metadata` | Reads table metadata through `INFORMATION_SCHEMA.COLUMNS`. |
+| `close` | Deletes the Cloud Spanner session and removes the cached native connection. |
 
 ## Development
 
