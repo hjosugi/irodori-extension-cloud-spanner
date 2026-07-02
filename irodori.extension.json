@@ -62,6 +62,7 @@
           "endpoint": {
             "modes": [
               "cloudResource",
+              "customEndpoint",
               "connectionString"
             ],
             "defaultPort": 443,
@@ -70,8 +71,30 @@
                 "id": "projectId",
                 "label": "Google Cloud project",
                 "type": "string",
-                "profileField": "database",
+                "option": "projectId",
                 "required": true
+              },
+              {
+                "id": "instanceId",
+                "label": "Spanner instance",
+                "type": "string",
+                "option": "instanceId",
+                "required": true
+              },
+              {
+                "id": "databaseId",
+                "label": "Spanner database",
+                "type": "string",
+                "profileField": "database",
+                "option": "databaseId",
+                "required": true
+              },
+              {
+                "id": "endpoint",
+                "label": "Custom endpoint",
+                "type": "uri",
+                "profileField": "host",
+                "option": "endpoint"
               }
             ]
           },
@@ -99,8 +122,30 @@
               "id": "projectId",
               "label": "Google Cloud project",
               "type": "string",
-              "profileField": "database",
+              "option": "projectId",
               "required": true
+            },
+            {
+              "id": "instanceId",
+              "label": "Spanner instance",
+              "type": "string",
+              "option": "instanceId",
+              "required": true
+            },
+            {
+              "id": "databaseId",
+              "label": "Spanner database",
+              "type": "string",
+              "profileField": "database",
+              "option": "databaseId",
+              "required": true
+            },
+            {
+              "id": "endpoint",
+              "label": "Custom endpoint",
+              "type": "uri",
+              "profileField": "host",
+              "option": "endpoint"
             },
             {
               "id": "readOnly",
